@@ -28,3 +28,24 @@ h2 {
 #newContent {
     display: inline-block;
 }
+
+#boxOne {
+    border-radius: 4px;
+    background-color:blueviolet;
+    height: 100px;
+    margin: 4px;
+}
+
+#boxTwo {
+    border-radius: 4px;
+    background-color:darkcyan;
+    height: 300px;
+    margin: 4px;
+}
+
+#boxThree {
+    border-radius: 4px;
+    background-color:chartreuse;
+    height: 200px;
+    margin: 4px;
+}
