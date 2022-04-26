@@ -11,20 +11,22 @@ document.getElementById("calculatorButtons").addEventListener("click", function(
         return value;
     });
 
+    console.log(stack);
+
     // the input symbol
     input = event.target.textContent;
 
     if(input != "=") {
-        if($(event.target).hasClass("operation")) {
+        if(event.target.classList.contains("operation")) {
             // don't allow two consecutive operators
             if(isNaN(stack[stack.length - 1]) === false)
-                $(".calculatorWindow").text(consoleText + ' ' + input + ' ');
+                document.getElementById("calculatorWindow").textContent = consoleText + ' ' + input + ' ';
         }
         else {
-            $(".calculatorWindow").text(consoleText + input);
+            document.getElementById("calculatorWindow").textContent = consoleText + input;
         }
     } else {
-        $(".calculatorWindow").text(computeResult(stack));
+        document.getElementById("calculatorWindow").textContent = computeResult(stack);
     }
 
     document.getElementById("clearButton").style.display = "block";
@@ -44,6 +46,7 @@ function computeResult(stack) {
             })();
             stack.splice(i - 1, 1);
             stack.splice(i, 1);
+            i = i - 1;
         }
 
         if(isNaN(stack[i]) & stack[i] === '÷') {
@@ -52,6 +55,7 @@ function computeResult(stack) {
             })();
             stack.splice(i - 1, 1);
             stack.splice(i, 1);
+            i = i - 1;
         }
     }
 
@@ -60,12 +64,14 @@ function computeResult(stack) {
             stack[i] = Number(stack[i - 1]) + Number(stack[i + 1]);
             stack.splice(i - 1, 1);
             stack.splice(i, 1);
+            i = i - 1;
         }
 
         if(isNaN(stack[i]) & stack[i] === '−') {
             stack[i] = Number(stack[i - 1]) - Number(stack[i + 1]);
             stack.splice(i - 1, 1);
             stack.splice(i, 1);
+            i = i - 1;
         }
     }
 
